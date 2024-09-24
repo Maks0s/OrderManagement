@@ -1,0 +1,22 @@
+version: '3.9'
+
+volumes:
+  OrderServiceMsSqlDbStorage:
+
+networks:
+  my-network:
+    driver: bridge
+  
+services:
+  MsSqlServer:
+    container_name: "OrderService.MsSqlDb"
+    image: "mcr.microsoft.com/mssql/server:2022-latest"
+    env_file:
+      - sqlconfig.env
+      - sapassword.env
+    ports:
+      - "1439:1433"
+    volumes:
+      - OrderServiceMsSqlDbStorage:/var/opt/mssql/
+    networks:
+      - my-network
