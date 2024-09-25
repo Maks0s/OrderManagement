@@ -2,6 +2,8 @@ version: '3.9'
 
 volumes:
   OrderServiceMsSqlDbStorage:
+  RabbitMqData:
+  RabbitMqLogs:
 
 networks:
   my-network:
@@ -18,5 +20,21 @@ services:
       - "1439:1433"
     volumes:
       - OrderServiceMsSqlDbStorage:/var/opt/mssql/
+    networks:
+      - my-network
+
+  RabbitMQ:
+    container_name: RabbitMQ
+    hostname: RabbitMQ
+    image: rabbitmq:3.13-management
+    env_file:
+      - rabbitmquserconfig.env
+      - rabbitmqserverconfig.env
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+        - RabbitMqData:/var/lib/rabbitmq
+        - RabbitMqLogs:/var/log/rabbitmq
     networks:
       - my-network
