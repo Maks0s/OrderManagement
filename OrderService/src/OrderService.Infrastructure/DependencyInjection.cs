@@ -1,11 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MassTransit;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using OrderService.Application.Common.Interfaces.Infrastructure.Persistence;
 using OrderService.Infrastructure.Persistence.Common;
 using OrderService.Infrastructure.Persistence.DbContexts;
 using OrderService.Infrastructure.Persistence.Repositories;
+using OrderService.Infrastructure.RabbitMq.Common;
 
 namespace OrderService.Infrastructure
 {
@@ -17,6 +20,7 @@ namespace OrderService.Infrastructure
             )
         {
             services.AddPersistence(configuration);
+            services.AddMassTransitConfigurations(configuration);
 
             return services;
         }
@@ -40,6 +44,34 @@ namespace OrderService.Infrastructure
             );
 
             services.AddScoped<IOrderRepository, OrderRepository>();
+
+            return services;
+        }
+
+        private static IServiceCollection AddMassTransitConfigurations(
+                this IServiceCollection services,
+                IConfiguration configuration
+            )
+        {
+            var rabbitMqConfig = new RabbitMqConfig();
+            configuration.Bind(RabbitMqConfig.SectionName, rabbitMqConfig);
+            services.AddSingleton(Options.Create(rabbitMqConfig));
+
+            services.AddMassTransit(busConfigurator =>
+            {
+                busConfigurator.SetKebabCaseEndpointNameFormatter();
+
+                busConfigurator.UsingRabbitMq((context, configurator) =>
+                {
+                    configurator.Host(rabbitMqConfig.Host, "/", host =>
+                    {
+                        host.Username(rabbitMqConfig.Username);
+                        host.Password(rabbitMqConfig.Password);
+                    });
+
+                    configurator.ConfigureEndpoints(context);
+                });
+            });
 
             return services;
         }

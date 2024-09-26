@@ -10,7 +10,7 @@ networks:
     driver: bridge
   
 services:
-  MsSqlServer:
+  order-service-sqlserver:
     container_name: "OrderService.MsSqlDb"
     image: "mcr.microsoft.com/mssql/server:2022-latest"
     env_file:
@@ -23,7 +23,7 @@ services:
     networks:
       - my-network
 
-  RabbitMQ:
+  rabbitmq:
     container_name: RabbitMQ
     hostname: RabbitMQ
     image: rabbitmq:3.13-management
