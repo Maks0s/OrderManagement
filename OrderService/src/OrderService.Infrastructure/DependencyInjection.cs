@@ -2,8 +2,10 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using OrderService.Application.Common.Interfaces.Infrastructure.Persistence;
 using OrderService.Infrastructure.Persistence.Common;
 using OrderService.Infrastructure.Persistence.DbContexts;
+using OrderService.Infrastructure.Persistence.Repositories;
 
 namespace OrderService.Infrastructure
 {
@@ -36,6 +38,8 @@ namespace OrderService.Infrastructure
                         }
                     )
             );
+
+            services.AddScoped<IOrderRepository, OrderRepository>();
 
             return services;
         }
