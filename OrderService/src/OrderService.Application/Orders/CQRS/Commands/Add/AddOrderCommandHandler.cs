@@ -1,5 +1,6 @@
 ﻿using ErrorOr;
 using MassTransit;
+using Microsoft.Extensions.Logging;
 using OrderService.Application.Common.AppErrors;
 using OrderService.Application.Common.Interfaces.Application.CQRS;
 using OrderService.Application.Common.Interfaces.Infrastructure.Persistence;
@@ -13,14 +14,17 @@ namespace OrderService.Application.Orders.CQRS.Commands.Add
     {
         private readonly IOrderRepository _orderRepository;
         private readonly IPublishEndpoint _publishEndpoint;
+        private readonly ILogger<AddOrderCommandHandler> _logger;
 
         public AddOrderCommandHandler(
-                IOrderRepository orderRepository, 
+                IOrderRepository orderRepository,
                 IPublishEndpoint publishEndpoint
-            )
+,
+                ILogger<AddOrderCommandHandler> logger)
         {
             _orderRepository = orderRepository;
             _publishEndpoint = publishEndpoint;
+            _logger = logger;
         }
 
         public async Task<ErrorOr<Order?>> Handle(
@@ -44,15 +48,21 @@ namespace OrderService.Application.Orders.CQRS.Commands.Add
                 return Errors.ServerDataManipulation.NotAdded();
             }
 
-            await _publishEndpoint.Publish(
-                new OrderCreatedEvent()
-                {
-                    Id = addedOrder.Id,
-                    CustomerId = addedOrder.CustomerId,
-                    OrderDate = addedOrder.OrderDate,
-                    ProductQuantity = addedOrder.ProductQuantity
-                }
-            );
+            var orderCreatedEvent = new OrderCreatedEvent()
+            {
+                Id = addedOrder.Id,
+                CustomerId = addedOrder.CustomerId,
+                OrderDate = addedOrder.OrderDate,
+                ProductQuantity = addedOrder.ProductQuantity
+            };
+
+            await _publishEndpoint.Publish(orderCreatedEvent);
+
+            _logger.LogInformation(
+                    "Publish {@eventName}: {@eventDetails}",
+                    nameof(OrderCreatedEvent),
+                    orderCreatedEvent
+                );
 
             return addedOrder;
         }
