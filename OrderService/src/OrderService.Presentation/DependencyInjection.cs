@@ -1,4 +1,6 @@
-﻿namespace OrderService.Presentation
+﻿using OrderService.Presentation.Common.Mappers;
+
+namespace OrderService.Presentation
 {
     public static class DependencyInjection
     {
@@ -7,6 +9,14 @@
             services.AddControllers();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
+            services.AddMappers();
+
+            return services;
+        }
+
+        private static IServiceCollection AddMappers(this IServiceCollection services)
+        {
+            services.AddScoped<OrderMapper>();
 
             return services;
         }
