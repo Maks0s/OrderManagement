@@ -38,6 +38,7 @@ try
 
     if (app.Environment.IsDevelopment())
     {
+        app.ApplyDbMigrations();
         app.UseSwagger();
         app.UseSwaggerUI();
     }

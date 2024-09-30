@@ -1,4 +1,6 @@
-﻿using OrderService.Presentation.Common.Mappers;
+﻿using Microsoft.EntityFrameworkCore;
+using OrderService.Infrastructure.Persistence.DbContexts;
+using OrderService.Presentation.Common.Mappers;
 
 namespace OrderService.Presentation
 {
@@ -19,6 +21,16 @@ namespace OrderService.Presentation
             services.AddScoped<OrderMapper>();
 
             return services;
+        }
+
+        public static void ApplyDbMigrations(this IApplicationBuilder app)
+        {
+            using IServiceScope scope = app.ApplicationServices.CreateScope();
+
+            using OrderDbContext dbContext =
+                scope.ServiceProvider.GetRequiredService<OrderDbContext>();
+
+            dbContext.Database.Migrate();
         }
     }
 }
