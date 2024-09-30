@@ -15,6 +15,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{28B64E36-431
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared.Contracts", "..\Shared.Contracts\Shared.Contracts\Shared.Contracts.csproj", "{58D47534-DDE8-4F4A-9B54-A82226A71B85}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{3FFE7A4D-4988-4E96-B1C2-43646F0A5F02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService.IntegrationTests", "tests\OrderService.IntegrationTests\OrderService.IntegrationTests.csproj", "{F968D22F-AE13-4AFA-93E6-FBCFD489C254}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +45,10 @@ Global
 		{58D47534-DDE8-4F4A-9B54-A82226A71B85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58D47534-DDE8-4F4A-9B54-A82226A71B85}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58D47534-DDE8-4F4A-9B54-A82226A71B85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F968D22F-AE13-4AFA-93E6-FBCFD489C254}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F968D22F-AE13-4AFA-93E6-FBCFD489C254}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F968D22F-AE13-4AFA-93E6-FBCFD489C254}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F968D22F-AE13-4AFA-93E6-FBCFD489C254}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +58,7 @@ Global
 		{41342D27-B3FD-49ED-8300-2350EBC7B4C6} = {28B64E36-4316-4F68-83FA-C03ADFFC4027}
 		{AC75AF76-1561-45E8-812B-6C47B9755392} = {28B64E36-4316-4F68-83FA-C03ADFFC4027}
 		{CDD27C1E-3FB5-4BF4-9B83-9C115FA0E7FF} = {28B64E36-4316-4F68-83FA-C03ADFFC4027}
+		{F968D22F-AE13-4AFA-93E6-FBCFD489C254} = {3FFE7A4D-4988-4E96-B1C2-43646F0A5F02}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {104B2E4D-B4E0-4441-A742-A6A0F4C79AB5}
