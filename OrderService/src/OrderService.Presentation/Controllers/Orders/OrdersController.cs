@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using OrderService.Application.Orders.CQRS.Queries.GetById;
 using OrderService.Presentation.Common.DTOs.OrderDTOs;
 using OrderService.Presentation.Common.Mappers;
 using OrderService.Presentation.Controllers.Common;
@@ -22,16 +23,31 @@ namespace OrderService.Presentation.Controllers.Orders
         [HttpPost]
         public async Task<ActionResult> AddOrder([FromBody] OrderRequest orderRequest)
         {
-            var addCommand = _mapper.MapToAddProductCommand(orderRequest);
+            var addCommand = _mapper.MapToAddOrderCommand(orderRequest);
 
             var addResult = await _sender.Send(addCommand);
 
             return addResult.Match(
-                    //TODO: After create 'GetOrder' replace
-                    // Created() with CreatedAtAction()
-                    added => Created(
-                            "uri",
-                            _mapper.MapToProductResponse(added)
+                    added => CreatedAtAction(
+                            nameof(GetOrder),
+                            new { orderId = added.Id },
+                            _mapper.MapToOrderResponse(added)
+                        ),
+                    errors => Problem(errors)
+                );
+        }
+
+        [HttpGet]
+        [Route("{orderId:guid}")]
+        public async Task<ActionResult<OrderResponse>> GetOrder(Guid orderId)
+        {
+            var getQuery = new GetOrderByIdQuery(orderId);
+
+            var getResult = await _sender.Send(getQuery);
+
+            return getResult.Match(
+                    received => Ok(
+                            _mapper.MapToOrderResponse(received)
                         ),
                     errors => Problem(errors)
                 );

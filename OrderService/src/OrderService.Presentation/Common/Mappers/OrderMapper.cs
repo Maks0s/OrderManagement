@@ -8,8 +8,8 @@ namespace OrderService.Presentation.Common.Mappers
     [Mapper]
     public partial class OrderMapper
     {
-        public partial AddOrderCommand MapToAddProductCommand(OrderRequest orderRequest);
+        public partial AddOrderCommand MapToAddOrderCommand(OrderRequest orderRequest);
 
-        public partial OrderResponse MapToProductResponse(Order order);
+        public partial OrderResponse MapToOrderResponse(Order order);
     }
 }
