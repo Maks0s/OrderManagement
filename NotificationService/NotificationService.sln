@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35222.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificationService.Host", "src\NotificationService.Host\NotificationService.Host.csproj", "{EDC2A653-D0A0-4E3F-9BA5-187CD4CEA9BF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E981E263-3104-4069-BC1B-BDA5BC334F10}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationService.Application", "src\NotificationService.Application\NotificationService.Application.csproj", "{664D7822-EAD3-49A8-B424-C1FB55472DF6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationService.Infrastructure", "src\NotificationService.Infrastructure\NotificationService.Infrastructure.csproj", "{74E5CE09-2076-4A61-B49C-B0D2149E30C2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EDC2A653-D0A0-4E3F-9BA5-187CD4CEA9BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDC2A653-D0A0-4E3F-9BA5-187CD4CEA9BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDC2A653-D0A0-4E3F-9BA5-187CD4CEA9BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDC2A653-D0A0-4E3F-9BA5-187CD4CEA9BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{664D7822-EAD3-49A8-B424-C1FB55472DF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{664D7822-EAD3-49A8-B424-C1FB55472DF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{664D7822-EAD3-49A8-B424-C1FB55472DF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{664D7822-EAD3-49A8-B424-C1FB55472DF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74E5CE09-2076-4A61-B49C-B0D2149E30C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74E5CE09-2076-4A61-B49C-B0D2149E30C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74E5CE09-2076-4A61-B49C-B0D2149E30C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74E5CE09-2076-4A61-B49C-B0D2149E30C2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EDC2A653-D0A0-4E3F-9BA5-187CD4CEA9BF} = {E981E263-3104-4069-BC1B-BDA5BC334F10}
+		{664D7822-EAD3-49A8-B424-C1FB55472DF6} = {E981E263-3104-4069-BC1B-BDA5BC334F10}
+		{74E5CE09-2076-4A61-B49C-B0D2149E30C2} = {E981E263-3104-4069-BC1B-BDA5BC334F10}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {819FA3EC-2D59-44CA-8D96-EB1CDF6E05BA}
+	EndGlobalSection
+EndGlobal
