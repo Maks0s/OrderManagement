@@ -17,13 +17,24 @@ namespace OrderService.IntegrationTests.OrderService.Presentation.Controllers.Or
             responseStatusCode.Should().Be(expectedStatusCode);
         }
 
-        public static void AssertOrderResponse(
+        public static void AssertNewlyCreatedOrderResponse(
                 this OrderResponse orderResponse,
                 OrderRequest expectedOrder
             )
         {
             orderResponse.CustomerId.Should().Be(expectedOrder.CustomerId);
             orderResponse.OrderDate.Should().BeCloseTo(DateTime.UtcNow, TimeSpan.FromSeconds(2));
+            orderResponse.ProductQuantity.Should().Be(expectedOrder.ProductQuantity);
+        }
+
+        public static void AssertOrderResponse(
+                this OrderResponse orderResponse,
+                OrderRequest expectedOrder,
+                DateTime OrderDate
+            )
+        {
+            orderResponse.CustomerId.Should().Be(expectedOrder.CustomerId);
+            orderResponse.OrderDate.Should().BeCloseTo(OrderDate, TimeSpan.FromSeconds(2));
             orderResponse.ProductQuantity.Should().Be(expectedOrder.ProductQuantity);
         }
 

@@ -38,8 +38,8 @@ namespace OrderService.IntegrationTests.OrderService.Presentation.Controllers.Or
             var publishingResult = await _testHarness.Published.Any<OrderCreatedEvent>();
             publishingResult.Should().BeTrue();
             addResult.StatusCode.AssertStatusCode(HttpStatusCode.Created);
-            //TODO: After create 'GetOrder' endpoint addResult.Headers.Location.Should().Be($"http://localhost/orders/{addedOrder!.Id}");
-            addedOrder!.AssertOrderResponse(orderToAdd);
+            addResult.Headers.Location.Should().Be($"http://localhost/orders/{addedOrder!.Id}");
+            addedOrder!.AssertNewlyCreatedOrderResponse(orderToAdd);
         }
 
         [Fact]

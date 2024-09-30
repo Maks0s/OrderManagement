@@ -3,5 +3,6 @@
     public static class OrderApiUrl
     {
         public const string AddOrderEndpoint = "/orders";
+        public const string GetOrderByIdEndpoint = "/orders/";
     }
 }
