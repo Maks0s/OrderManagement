@@ -12,12 +12,16 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.Infrastructure", "src\OrderService.Infrastructure\OrderService.Infrastructure.csproj", "{CDD27C1E-3FB5-4BF4-9B83-9C115FA0E7FF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{28B64E36-4316-4F68-83FA-C03ADFFC4027}"
+	ProjectSection(SolutionItems) = preProject
+		src\.dockerignore = src\.dockerignore
+		src\Dockerfile = src\Dockerfile
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared.Contracts", "..\Shared.Contracts\Shared.Contracts\Shared.Contracts.csproj", "{58D47534-DDE8-4F4A-9B54-A82226A71B85}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{3FFE7A4D-4988-4E96-B1C2-43646F0A5F02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService.IntegrationTests", "tests\OrderService.IntegrationTests\OrderService.IntegrationTests.csproj", "{F968D22F-AE13-4AFA-93E6-FBCFD489C254}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService.IntegrationTests", "tests\OrderService.IntegrationTests\OrderService.IntegrationTests.csproj", "{F968D22F-AE13-4AFA-93E6-FBCFD489C254}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
