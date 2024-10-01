@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificationService.Host", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E981E263-3104-4069-BC1B-BDA5BC334F10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationService.Application", "src\NotificationService.Application\NotificationService.Application.csproj", "{664D7822-EAD3-49A8-B424-C1FB55472DF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificationService.Application", "src\NotificationService.Application\NotificationService.Application.csproj", "{664D7822-EAD3-49A8-B424-C1FB55472DF6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationService.Infrastructure", "src\NotificationService.Infrastructure\NotificationService.Infrastructure.csproj", "{74E5CE09-2076-4A61-B49C-B0D2149E30C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificationService.Infrastructure", "src\NotificationService.Infrastructure\NotificationService.Infrastructure.csproj", "{74E5CE09-2076-4A61-B49C-B0D2149E30C2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared.Contracts", "..\Shared.Contracts\Shared.Contracts\Shared.Contracts.csproj", "{70D208B3-7EEF-4148-A59D-E5D4C5FB7898}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{74E5CE09-2076-4A61-B49C-B0D2149E30C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74E5CE09-2076-4A61-B49C-B0D2149E30C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74E5CE09-2076-4A61-B49C-B0D2149E30C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70D208B3-7EEF-4148-A59D-E5D4C5FB7898}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70D208B3-7EEF-4148-A59D-E5D4C5FB7898}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70D208B3-7EEF-4148-A59D-E5D4C5FB7898}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70D208B3-7EEF-4148-A59D-E5D4C5FB7898}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
