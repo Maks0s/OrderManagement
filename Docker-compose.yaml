@@ -12,7 +12,7 @@ networks:
 services:
   order-service:
     container_name: "OrderService.Api"
-    image: maks0s/order-management.order-service:1.0.1
+    image: maks0s/order-management.order-service:1.0.2
     build:
       context: .
       dockerfile: OrderService/src/Dockerfile
@@ -41,6 +41,12 @@ services:
       - OrderServiceMsSqlDbStorage:/var/opt/mssql/
     networks:
       - my-network
+    healthcheck:
+      test: ["CMD", "exec", "pidof", "sqlservr"]
+      interval: 10s
+      retries: 5
+      start_period: 60s
+      timeout: 10s
 
   notification-service:
     container_name: "NotificationService"
@@ -71,3 +77,9 @@ services:
         - RabbitMqLogs:/var/log/rabbitmq
     networks:
       - my-network
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      interval: 15s
+      retries: 5
+      start_period: 10s
+      timeout: 15s
