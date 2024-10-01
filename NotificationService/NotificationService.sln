@@ -6,6 +6,10 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificationService.Host", "src\NotificationService.Host\NotificationService.Host.csproj", "{EDC2A653-D0A0-4E3F-9BA5-187CD4CEA9BF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E981E263-3104-4069-BC1B-BDA5BC334F10}"
+	ProjectSection(SolutionItems) = preProject
+		src\.dockerignore = src\.dockerignore
+		src\Dockerfile = src\Dockerfile
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificationService.Application", "src\NotificationService.Application\NotificationService.Application.csproj", "{664D7822-EAD3-49A8-B424-C1FB55472DF6}"
 EndProject
