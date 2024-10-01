@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using NotificationService.Application.Orders.Consumers.Created;
 using NotificationService.Infrastructure.RabbitMq.Common;
 
 namespace NotificationService.Infrastructure
@@ -31,7 +32,7 @@ namespace NotificationService.Infrastructure
             {
                 busConfigurator.SetKebabCaseEndpointNameFormatter();
 
-                busConfigurator.AddConsumers(typeof(DependencyInjection).Assembly);
+                busConfigurator.AddConsumer<OrderCreatedConsumer>();
 
                 busConfigurator.UsingRabbitMq((context, configurator) =>
                 {
