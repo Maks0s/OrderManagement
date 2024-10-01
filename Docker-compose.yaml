@@ -10,6 +10,25 @@ networks:
     driver: bridge
   
 services:
+  order-service:
+    container_name: "OrderService.Api"
+    image: maks0s/order-management.order-service:1.0.1
+    build:
+      context: .
+      dockerfile: OrderService/src/Dockerfile
+    env_file:
+      - apiconfig.env
+    ports:
+      - "5000:8080"
+      - "5001:8081"
+    volumes:
+      - ~/.aspnet/https:/https:ro
+    networks:
+      - my-network
+    depends_on:
+      - order-service-sqlserver
+      - rabbitmq
+
   order-service-sqlserver:
     container_name: "OrderService.MsSqlDb"
     image: "mcr.microsoft.com/mssql/server:2022-latest"
@@ -22,6 +41,20 @@ services:
       - OrderServiceMsSqlDbStorage:/var/opt/mssql/
     networks:
       - my-network
+
+  notification-service:
+    container_name: "NotificationService"
+    image: maks0s/order-management.notification-service:1.0.0
+    build:
+      context: .
+      dockerfile: NotificationService/src/Dockerfile
+    ports:
+      - "5002:8080"
+      - "5003:8081"
+    networks:
+      - my-network
+    depends_on:
+      - rabbitmq
 
   rabbitmq:
     container_name: RabbitMQ
