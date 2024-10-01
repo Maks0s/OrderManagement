@@ -36,10 +36,7 @@ try
 
     app.UseExceptionHandler("/error");
 
-    if (app.Environment.IsDevelopment())
-    {
-        app.ApplyDbMigrations();
-    }
+    app.ApplyDbMigrations();
 
     app.UseSwagger();
     app.UseSwaggerUI();
