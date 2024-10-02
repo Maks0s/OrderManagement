@@ -1,0 +1,52 @@
+version: '3.9'
+
+volumes:
+  OrderServiceMsSqlDbStorage:
+  RabbitMqData:
+  RabbitMqLogs:
+
+networks:
+  my-network:
+    driver: bridge
+  
+services:
+  order-service-sqlserver:
+    container_name: "OrderService.MsSqlDb"
+    image: "mcr.microsoft.com/mssql/server:2022-latest"
+    env_file:
+      - sqlconfig.env
+      - sapassword.env
+    ports:
+      - "1439:1433"
+    volumes:
+      - OrderServiceMsSqlDbStorage:/var/opt/mssql/
+    networks:
+      - my-network
+    healthcheck:
+      test: ["CMD", "exec", "pidof", "sqlservr"]
+      interval: 10s
+      retries: 5
+      start_period: 60s
+      timeout: 10s
+
+  rabbitmq:
+    container_name: RabbitMQ
+    hostname: RabbitMQ
+    image: rabbitmq:3.13-management
+    env_file:
+      - rabbitmquserconfig.env
+      - rabbitmqserverconfig.env
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+        - RabbitMqData:/var/lib/rabbitmq
+        - RabbitMqLogs:/var/log/rabbitmq
+    networks:
+      - my-network
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      interval: 15s
+      retries: 5
+      start_period: 10s
+      timeout: 15s
