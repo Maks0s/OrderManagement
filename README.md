@@ -1,5 +1,18 @@
 # Микросервисное приложение для создания и получения заказов, с сервисом отправки уведомлений о созданном заказе
 
+## Использованные технологии
+- ASP.Net Core (Web API framework)
+- MediatR (CQRS + pipeline behaviors)
+- MassTransit + RabbitMQ (Message broker)
+- Entity framework Core (ORM)
+- MS SQL Server (DB)
+- Xunit + TestContainers (Itegration testing)
+- ErrorOr (Error handling)
+- Fluent Validation (Model validation)
+- Serilog (Logging)
+- Mapperly (Mapping)
+- Docker Desktop
+
 ## Архитектура
 Приложение состоит из трёх .sln файлов, структура каждого микросервиса следует принципам чистой архитектуры:
 - OrderService.sln - Микросервис, обрабатывающий заказы, их операции с БД и бизнес-логику:
@@ -25,18 +38,38 @@
 - В корне приложения находится Docker-compose.yaml и связанные с ним для конфигурации .env файлы
     - Все строки подключения, переменные окружения, логины и пароли не были спрятаны и вынесены в Git для удобства запуска репозитория и его проверки
 
-### Использованные технологии
-- ASP.Net Core (Web API framework)
-- MediatR (CQRS + pipeline behaviors)
-- MassTransit + RabbitMQ (Message broker)
-- Entity framework Core (ORM)
-- MS SQL Server (DB)
-- Xunit + TestContainers (Itegration testing)
-- ErrorOr (Error handling)
-- Fluent Validation (Model validation)
-- Serilog (Logging)
-- Mapperly (Mapping)
-- Docker Desktop
+## Примеры API-запросов и результаты
+### Endpoints
+![Endpoints](https://github.com/user-attachments/assets/e1ad372b-03a0-4d6a-a1a7-f8956e7d05fd)
+
+### Schemas
+![Schemas](https://github.com/user-attachments/assets/4309ec32-2d16-4ae0-b099-937cc8a96be1)
+
+### Отравка Post запроса
+- Данные для создания валидного Order
+  ![image](https://github.com/user-attachments/assets/5c3db64e-d6d6-4ac1-81ca-8f262ecc316f)
+- Успешное создание
+  ![image](https://github.com/user-attachments/assets/5872ee70-4adb-4cf1-88e3-0c8e19220aaa)
+- Получение события RabitMQ
+  ![image](https://github.com/user-attachments/assets/11ceefa0-3291-4755-9b02-2b8240efd228)
+- Логи в консолях микросервисов (NotificationService слева, OrderService справа) 
+  ![image](https://github.com/user-attachments/assets/9b28c642-4a9c-4131-836f-337a9f5af8cb)
+- Заполненная БД
+  ![image](https://github.com/user-attachments/assets/6536eb73-0011-4955-a68b-7c4a49b0c319)
+- Данные для создания невалидного Order
+  ![image](https://github.com/user-attachments/assets/89a38903-64d3-48f4-821e-da7858c2d807)
+- Ошибка создания
+  ![image](https://github.com/user-attachments/assets/285abeab-952d-461f-aea4-63029f79fc8e)
+
+### Отправка Get запроса
+- Данные для получение существующего Order
+  ![image](https://github.com/user-attachments/assets/716eca1d-e72f-4ee3-9df9-88219f402762)
+- Успешное получение
+  ![image](https://github.com/user-attachments/assets/4e4855a3-c010-4fbb-b732-8f8c48295688)
+- Данные для получения несуществующего Order
+  ![image](https://github.com/user-attachments/assets/e3d95fe2-4ec6-4298-934a-90f8581a8e51)
+- Ошибка получения
+  ![image](https://github.com/user-attachments/assets/3020c5fb-f863-4e0d-b3a0-cfc0c757f53e)
 
 ## Инструкция по запуску проекта
 ### Локальный запуск микросервисов, работающих с заказом, и запуск на Docker внешних сервисов (MsSQL Server и RabbitMQ)
@@ -100,36 +133,3 @@ docker-compose -f Docker-compose.yaml up -d
 https://localhost:5001/swagger/index.html
 
 Cмотрим результаты в том же SwaggerUI или в логах контейнеров, запущенных на Docker
-
-## Примеры API-запросов и результаты
-### Endpoints
-![Endpoints](https://github.com/user-attachments/assets/e1ad372b-03a0-4d6a-a1a7-f8956e7d05fd)
-
-### Schemas
-![Schemas](https://github.com/user-attachments/assets/4309ec32-2d16-4ae0-b099-937cc8a96be1)
-
-### Отравка Post запроса
-- Данные для создания валидного Order
-  ![image](https://github.com/user-attachments/assets/5c3db64e-d6d6-4ac1-81ca-8f262ecc316f)
-- Успешное создание
-  ![image](https://github.com/user-attachments/assets/5872ee70-4adb-4cf1-88e3-0c8e19220aaa)
-- Получение события RabitMQ
-  ![image](https://github.com/user-attachments/assets/11ceefa0-3291-4755-9b02-2b8240efd228)
-- Логи в консолях микросервисов (NotificationService слева, OrderService справа) 
-  ![image](https://github.com/user-attachments/assets/9b28c642-4a9c-4131-836f-337a9f5af8cb)
-- Заполненная БД
-  ![image](https://github.com/user-attachments/assets/6536eb73-0011-4955-a68b-7c4a49b0c319)
-- Данные для создания невалидного Order
-  ![image](https://github.com/user-attachments/assets/89a38903-64d3-48f4-821e-da7858c2d807)
-- Ошибка создания
-  ![image](https://github.com/user-attachments/assets/285abeab-952d-461f-aea4-63029f79fc8e)
-
-### Отправка Get запроса
-- Данные для получение существующего Order
-  ![image](https://github.com/user-attachments/assets/716eca1d-e72f-4ee3-9df9-88219f402762)
-- Успешное получение
-  ![image](https://github.com/user-attachments/assets/4e4855a3-c010-4fbb-b732-8f8c48295688)
-- Данные для получения несуществующего Order
-  ![image](https://github.com/user-attachments/assets/e3d95fe2-4ec6-4298-934a-90f8581a8e51)
-- Ошибка получения
-  ![image](https://github.com/user-attachments/assets/3020c5fb-f863-4e0d-b3a0-cfc0c757f53e)
